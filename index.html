@@ -7,16 +7,18 @@
         
         body {
   overflow: hidden;
+  background: whitesmoke;
 }
 
 .red {
-    background-color: red;
-    fill: red !important;
+    fill: #dc155c !important;
 }
 
 .blue {
-    background-color: blue;
-    fill: blue !important;
+    fill: #767de1 !important;
+}
+.orange {
+    fill: #009688 !important
 }
 
 /* Tooltip css */
@@ -162,10 +164,14 @@
 
 .nodeHasChildren {
   fill: #B4975A;
+  stroke-width: 8px;
+    stroke: #dadada;
 }
 
 .nodeDoesNotHaveChildren {
-  fill: #B4975A;
+  fill: #9c2042;
+  stroke-width: 8px;
+    stroke: #dadada;
 }
 
 .nodeRepresentsCurrentUser {
@@ -179,8 +185,8 @@ text {
 
 .link {
   fill: none;
-  stroke: #ccc;
-  stroke-width: 1.5px;
+    stroke: #3e3c3c;
+    stroke-width: 3px;
 }
 
 .node {
@@ -188,13 +194,17 @@ text {
 }
 
 .node-collapse {
-  stroke: grey;
+  stroke: black;
+    fill: #000000;
+    opacity: 0.7;
+
 }
 
 .node text {
   fill: white;
   font-family: "Segoe UI", Arial, sans-serif;
-  font-size: 10px;
+  font-size: 15px;
+  
 }
 
 .node circle {
@@ -224,57 +234,138 @@ var params = {
 
 d3.json(params.dataLoadUrl, function(data) {
   params.data = {
-  "name": "Sunny Bajaj",
-  "employeeid": "10000000",
-  "office": "CTO office",
-  "positionName": "Cheaf Executive Officer ",
-  "location": "Bethesda, MD (MD001)",
-  "managerName": "N/A",
-  "children": [{
-    "name": "Erin Miles",
-  "employeeid": "20000000",
-  "office": "CTO office",
-  "positionName": "Executive Assistant",
-  "location": "Bethesda, MD (MD001)",
-  "managerName": "Sunny Bajaj",
-  },
-  {
-    "name": "John Welch",
-  "employeeid": "30000000",
-  "office": "US office",
-  "positionName": "Executive Vice President",
-  "location": "Bethesda, MD (MD001)",
-  "managerName": "Sunny Bajaj",
-  },
-  {
-  "name": "Ken Bajaj",
-  "employeeid": "40000000",
-  "office": "Delhi office",
-  "positionName": "Chief Operating Officer ",
-  "location": "Bethesda",
-  "managerName": "Sunny Bajaj",
-  children: [
-  {
-  "name": "Dave",
-  "employeeid": "50000000",
-  "office": "Up office",
-  "positionName": "Group President, Enterprise ",
-  "location": "Telework (WFH01)",
-  "managerName": "Ken Bajaj",
-  children: [
-  {
-  "name": "Ashish Kumar Khurana",
-  "employeeid": "50000000",
-  "office": "Up office",
-  "positionName": "Vice President - Projects ",
-  "location": "Noida, India",
-  "managerName": "Ken Bajaj",
-  }
-  ]
-  },
-  ]
-  }]
-};
+    "name": "Sunny Bajaj",
+    "employeeid": "10000000",
+    "office": "CTO office",
+    "positionName": "Chief Executive Officer ",
+    "location": "Bethesda, MD (MD001)",
+    "managerName": "N/A",
+    "children": [
+        {
+            "name": "Erin Miles",
+            "employeeid": "20000000",
+            "office": "CTO office",
+            "positionName": "Executive Assistant",
+            "location": "Bethesda, MD (MD001)",
+            "managerName": "Sunny Bajaj"
+        },
+        {
+            "name": "John Welch",
+            "employeeid": "30000000",
+            "office": "US office",
+            "positionName": "Executive Vice President",
+            "location": "Telework (WFH01)",
+            "managerName": "Sunny Bajaj",
+            "children": [
+                {
+                    "name": "Abby J Kelman",
+                    "employeeid": "60000000",
+                    "office": "US office",
+                    "positionName": "Vice President",
+                    "location": "Bethesda, MD (MD001)",
+                    "managerName": "John Welch"
+                },
+                {
+                    "name": "Christopher Kermode",
+                    "employeeid": "70000000",
+                    "office": "US office",
+                    "positionName": "VICE PRESIDENT",
+                    "location": "Noida, India",
+                    "managerName": "John Welch",
+                    "children": [
+                        {
+                            "name": "Debbie Oaks",
+                            "employeeid": "90000000",
+                            "office": "US office",
+                            "positionName": "CPSR Specialist",
+                            "location": "Telework (WFH01)",
+                            "managerName": "Christopher Kermode"
+                        },
+                        {
+                            "name": "Kellie Morrison",
+                            "employeeid": "100000000",
+                            "office": "US office",
+                            "positionName": "Senior Sub-Contract Administrator",
+                            "location": "Bethesda, MD (MD001)",
+                            "managerName": "Christopher Kermode"
+                        },
+                        {
+                            "name": "Matthew T. Kidwell",
+                            "employeeid": "110000000",
+                            "office": "US office",
+                            "positionName": "Senior Buyer",
+                            "location": "Noida, India",
+                            "managerName": "Christopher Kermode"
+                        }
+                    ]
+                },
+                {
+                    "name": "Collin Dretsc",
+                    "employeeid": "80000000",
+                    "office": "US office",
+                    "positionName": "Senior VP",
+                    "location": "Bethesda, MD (MD001)",
+                    "managerName": "John Welch"
+                }
+            ]
+        },
+        {
+            "name": "Ken Bajaj",
+            "employeeid": "40000000",
+            "office": "Delhi office",
+            "positionName": "Chief Operating Officer ",
+            "location": "Bethesda, MD (MD001)",
+            "managerName": "Sunny Bajaj",
+            "children": [
+                {
+                    "name": "Anil K. Jain",
+                    "employeeid": "120000000",
+                    "office": "US office",
+                    "positionName": "Group President, Enterprise",
+                    "location": "Telework (WFH01)",
+                    "managerName": "Ken Bajaj",
+                    "children": [
+                        {
+                            "name": "Sanjay D. Singh",
+                            "employeeid": "130000000",
+                            "office": "US office",
+                            "positionName": "Executive Vice President",
+                            "location": "Noida, India",
+                            "managerName": "Anil K. Jain",
+                            "children": [
+                                {
+                                    "name": "Ashish Kumar Khurana",
+                                    "employeeid": "140000000",
+                                    "office": "US office",
+                                    "positionName": "Vice President - Projects",
+                                    "location": "Noida, India",
+                                    "managerName": "Sanjay D. Singh"
+                                }
+                            ]
+                        },{
+                            "name": "Allison Mataya",
+                            "employeeid": "150000000",
+                            "office": "US office",
+                            "positionName": "Executive Vice President",
+                            "location": "Telework (WFH01)",
+                            "managerName": "Anil K. Jain",
+                            "children": [
+                                {
+                                    "name": "Allison Lee",
+                                    "employeeid": "160000000",
+                                    "office": "US office",
+                                    "positionName": "Practice Leader",
+                                    "location": "Noida, India",
+                                    "managerName": "Allison Mataya"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
   drawOrganizationChart(params);
 })
 
@@ -289,8 +380,8 @@ function drawOrganizationChart(params) {
   var COLLAPSE_SYMBOL = '-';
   var i = 0,
     duration = 750,
-    rectW = 170,
-    rectH = 70,
+    rectW = 230,
+    rectH = 115,
     collapseRectLength = 15;
 
   var tree = d3.layout.tree().nodeSize([rectW + 40, rectH]);
@@ -480,16 +571,14 @@ function drawOrganizationChart(params) {
 
     var nodeGroup = nodeEnter.append("g")
       .attr("class", "node-group")
-
-      debugger;
-
     nodeGroup.append("rect")
       .attr("width", rectW)
       .attr("height", rectH)
       .attr("class", function(d) {
         var res = "";
-        if (d.location == 'india') res += 'blue ';
-        if (d.location == 'us') res += 'red ';
+        if (d.location == 'Noida, India') res += 'blue ';
+        if (d.location == 'Bethesda, MD (MD001)') res += 'red ';
+        if (d.location == 'Telework (WFH01)') res += 'orange ';
         res += d._children || d.children ? "nodeHasChildren" : "nodeDoesNotHaveChildren";
         return res;
       });
@@ -530,7 +619,7 @@ function drawOrganizationChart(params) {
 
     nodeGroup.append("text")
       .attr("x", 10)
-      .attr("y", 13)
+      .attr("y", 25)
       .attr("dy", ".35em")
       .attr("text-anchor", "left")
       .text(function(d) {
@@ -541,7 +630,7 @@ function drawOrganizationChart(params) {
 
     nodeGroup.append("text")
       .attr("x", 10)
-      .attr("y", 20)
+      .attr("y", 36)
       .attr("dy", ".35em")
       .attr("text-anchor", "left")
       .text(function(d) {
@@ -551,7 +640,7 @@ function drawOrganizationChart(params) {
 
       nodeGroup.append("text")
       .attr("x", 10)
-      .attr("y", 32)
+      .attr("y", 55)
       .attr("dy", ".35em")
       .attr("text-anchor", "left")
       .text(function(d) {
@@ -559,7 +648,7 @@ function drawOrganizationChart(params) {
       })
       nodeGroup.append("text")
       .attr("x", 10)
-      .attr("y", 42)
+      .attr("y", 70)
       .attr("dy", ".35em")
       .attr("text-anchor", "left")
       .text(function(d) {
@@ -567,24 +656,17 @@ function drawOrganizationChart(params) {
       })
       nodeGroup.append("text")
       .attr("x", 10)
-      .attr("y", 52)
+      .attr("y", 85)
       .attr("dy", ".35em")
       .attr("text-anchor", "left")
       .text(function(d) {
         return d.location;
       })
-      nodeGroup.append("text")
-      .attr("x", 10)
-      .attr("y", 52)
-      .attr("dy", ".35em")
-      .attr("text-anchor", "left")
-      .text(function(d) {
-        return d.location;
-      })
+  
 
       nodeGroup.append("text")
       .attr("x", 10)
-      .attr("y", 62)
+      .attr("y", 100)
       .attr("dy", ".35em")
       .attr("text-anchor", "left")
       .text(function(d) {
