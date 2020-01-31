@@ -7,7 +7,6 @@
         
         body {
   overflow: hidden;
-  background: whitesmoke;
 }
 
 .red {
@@ -26,13 +25,13 @@
 .customTooltip-wrapper {
   opacity: 0;
   /* NEW */
-  display: none;
   position: absolute;
 }
 
+
 .customTooltip {
-  background: #eee;
-  box-shadow: 0 0 5px #999999;
+  background: #fff;
+  box-shadow: 0 2px 16px #999999;
   color: #333;
   position: absolute;
   font-size: 12px;
@@ -40,7 +39,7 @@
   padding: 5px;
   text-align: center;
   top: 95px;
-  width: 350px;
+  width: 150px;
   z-index: 10;
   text-align: left;
 }
@@ -381,7 +380,7 @@ function drawOrganizationChart(params) {
   var i = 0,
     duration = 750,
     rectW = 230,
-    rectH = 115,
+    rectH = 55,
     collapseRectLength = 15;
 
   var tree = d3.layout.tree().nodeSize([rectW + 40, rectH]);
@@ -638,40 +637,40 @@ function drawOrganizationChart(params) {
       })
       
 
-      nodeGroup.append("text")
-      .attr("x", 10)
-      .attr("y", 55)
-      .attr("dy", ".35em")
-      .attr("text-anchor", "left")
-      .text(function(d) {
-        return d.employeeid;
-      })
-      nodeGroup.append("text")
-      .attr("x", 10)
-      .attr("y", 70)
-      .attr("dy", ".35em")
-      .attr("text-anchor", "left")
-      .text(function(d) {
-        return d.managerName;
-      })
-      nodeGroup.append("text")
-      .attr("x", 10)
-      .attr("y", 85)
-      .attr("dy", ".35em")
-      .attr("text-anchor", "left")
-      .text(function(d) {
-        return d.location;
-      })
+      // nodeGroup.append("text")
+      // .attr("x", 10)
+      // .attr("y", 55)
+      // .attr("dy", ".35em")
+      // .attr("text-anchor", "left")
+      // .text(function(d) {
+      //   return d.employeeid;
+      // })
+      // nodeGroup.append("text")
+      // .attr("x", 10)
+      // .attr("y", 70)
+      // .attr("dy", ".35em")
+      // .attr("text-anchor", "left")
+      // .text(function(d) {
+      //   return d.managerName;
+      // })
+      // nodeGroup.append("text")
+      // .attr("x", 10)
+      // .attr("y", 85)
+      // .attr("dy", ".35em")
+      // .attr("text-anchor", "left")
+      // .text(function(d) {
+      //   return d.location;
+      // })
   
 
-      nodeGroup.append("text")
-      .attr("x", 10)
-      .attr("y", 100)
-      .attr("dy", ".35em")
-      .attr("text-anchor", "left")
-      .text(function(d) {
-        return d.office;
-      })
+      // nodeGroup.append("text")
+      // .attr("x", 10)
+      // .attr("y", 100)
+      // .attr("dy", ".35em")
+      // .attr("text-anchor", "left")
+      // .text(function(d) {
+      //   return d.office;
+      // })
 
   //  .call(wrap, rectW); 
 
@@ -786,6 +785,47 @@ function drawOrganizationChart(params) {
 
 
 
+    function tooltipContent(params) {
+return  '   <a class="customTooltip" href="#" >  ' +
+        '     <div class="tooltip-desc">  ' +
+        '       <h4 class="position">' + params.positionName + '</h4>  ' +
+        '       <h3 class="name"> ' + params.name + ' <h3>   ' +
+        '       <h4 class="office">' + params.office + '</h4>  ' +
+        '       <h4 class="office">' + params.employeeid + '</h4>  ' +
+        '       <h4 class="office">' + params.managerName + '</h4>  ' +
+        '     </div>  ';
+}
+
+function tooltipHoverHandler(d) {
+
+tooltip.html(tooltipContent(d));
+
+tooltip.transition()
+  .duration(200).style("opacity", "1").style('display', 'block');
+d3.select(this).attr('cursor', 'pointer').attr("stroke-width", 50);
+
+var y = d3.event.pageY;
+var x = d3.event.pageX;
+if(y<220){
+  y+=220-y; 
+  x+=130;
+} 
+console.log(y);
+tooltip.style('top', (y - 250) + 'px')
+  .style('left', (x - 200) + 'px');
+}
+
+function tooltipOutHandler() {
+tooltip.transition()
+  .duration(200)
+  .style('opacity', '0').style('display', 'none');
+d3.select(this).attr("stroke-width", 5);
+
+}
+
+nodeGroup.on('click', tooltipHoverHandler);
+
+nodeGroup.on('dblclick', tooltipOutHandler);
 
     function equalToEventTarget() {
       return this == d3.event.target;
